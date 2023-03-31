@@ -3,13 +3,28 @@ default:
     enabled: true
     enableAutoSync: true
     autoSyncPrune: false
-    project: default
+    project: rollouts-demo
     destination:
-      namespace: rollouts-demo-gitops
+      namespace: openshift-gitops
       server: https://kubernetes.default.svc
     source:
       repoURL: https://github.com/gitops-examples/rollouts-demo
       targetRevision: main
+
+projects:
+
+  rollouts-demo:
+    description: Rollouts demo project
+    namespace: openshift-gitops
+    sourceRepos:
+    - '*'
+    destinations: |
+      - namespace: '*'
+        server: https://kubernetes.default.svc
+    extraFields: |
+      clusterResourceWhitelist:
+      - group: ''
+        kind: 'Namespace'
 
 applications:
 
