@@ -1,4 +1,5 @@
 resources:
 - rollout.yaml
 - services.yaml
-- ingress.yaml
+- route-active.yaml
+- route-preview.yaml
