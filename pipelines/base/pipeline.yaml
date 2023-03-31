@@ -1,0 +1,68 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: rollouts-pipeline
+spec:
+  params:
+    - default: blue
+      name: COLOR
+      type: string
+    - default: https://github.com/gitops-examples/rollouts-demo
+      name: GIT_REPOSITORY
+      type: string
+    - default: main
+      name: GIT_REF
+      type: string
+  tasks:
+    - name: get-image-digest
+      taskRef:
+        name: image-tag-to-digest
+      params:
+        - name: image_dest_url
+          value: argoproj/rollouts-demo
+        - name: image_dest_tag
+          value: $(params.COLOR)
+    - name: dev-git-update
+      runAfter:
+        - get-image-digest
+      params:
+      - name: GIT_REPOSITORY
+        value: $(params.GIT_REPOSITORY)
+      - name: GIT_REF
+        value: $(params.GIT_REF)
+      - name: NEW_IMAGE
+        value: argoproj/rollouts-demo
+      - name: NEW_DIGEST
+        value: $(tasks.get-image-digest.results.IMAGE_DIGEST)
+      - name: KUSTOMIZATION_PATH
+        value: demo/environments/overlays/dev
+    - name: dev-gitops-sync
+      taskRef:
+        name: argocd-task-sync-and-wait
+      runAfter:
+        - dev-git-update
+      params:
+        - name: application_name
+          value: rollouts-demo-dev
+    - name: prod-git-update
+      runAfter:
+        - dev-gitops-sync
+      params:
+      - name: GIT_REPOSITORY
+        value: $(params.GIT_REPOSITORY)
+      - name: GIT_REF
+        value: $(params.GIT_REF)
+      - name: NEW_IMAGE
+        value: argoproj/rollouts-demo
+      - name: NEW_DIGEST
+        value: $(tasks.get-image-digest.results.IMAGE_DIGEST)
+      - name: KUSTOMIZATION_PATH
+        value: demo/environments/overlays/prod
+    - name: prod-gitops-sync
+      taskRef:
+        name: argocd-task-sync-and-wait
+      runAfter:
+        - prod-git-update
+      params:
+        - name: application_name
+          value: rollouts-demo-prod
