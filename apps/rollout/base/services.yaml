@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: rollout-bluegreen
-  name: rollout-bluegreen
+  name: rollout-bluegreen-active
 spec:
   ports:
   - port: 8080

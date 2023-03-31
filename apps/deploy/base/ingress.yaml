@@ -9,7 +9,7 @@ spec:
       paths:
       - backend:
           service:
-            name: rollout-bluegreen-active
+            name: rollout-bluegreen
             port:
               number: 8080
         path: /
