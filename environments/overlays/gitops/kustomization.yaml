@@ -1,0 +1,5 @@
+namespace: rollouts-demo-gitops
+
+resources:
+- namespace.yaml
+- argocd.yaml

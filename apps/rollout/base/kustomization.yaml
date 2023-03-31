@@ -1,0 +1,6 @@
+namespace: rollout-bluegreen
+
+resources:
+- rollout.yaml
+- services.yaml
+- ingress.yaml
