@@ -17,7 +17,7 @@ kind: Service
 metadata:
   labels:
     app: rollout-bluegreen
-  name: rollout-bluegreen.preview
+  name: rollout-bluegreen-preview
 spec:
   ports:
   - port: 8080

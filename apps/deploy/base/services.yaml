@@ -11,17 +11,3 @@ spec:
     targetPort: 8080
   selector:
     app: rollout-bluegreen
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: rollout-bluegreen
-  name: rollout-bluegreen.preview
-spec:
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: rollout-bluegreen
