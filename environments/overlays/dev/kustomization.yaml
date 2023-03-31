@@ -1,3 +1,5 @@
+namespace: rollouts-demo-dev
+
 resources:
 - namespace.yaml
 - ../../../apps/deploy/base
