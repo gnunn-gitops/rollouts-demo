@@ -2,4 +2,4 @@ namespace: rollouts-demo-prod
 
 resources:
 - namespace.yaml
-- ../../../apps/deploy/base
+- ../../../apps/rollout/base
