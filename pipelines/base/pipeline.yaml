@@ -3,6 +3,8 @@ kind: Pipeline
 metadata:
   name: rollouts-pipeline
 spec:
+  workspaces:
+  - name: manifests
   params:
     - default: blue
       name: COLOR
@@ -23,6 +25,9 @@ spec:
         - name: image_dest_tag
           value: $(params.COLOR)
     - name: dev-git-update
+      taskRef:
+        kind: Task
+        name: git-update-deployment
       runAfter:
         - get-image-digest
       params:
@@ -36,6 +41,9 @@ spec:
         value: $(tasks.get-image-digest.results.IMAGE_DIGEST)
       - name: KUSTOMIZATION_PATH
         value: demo/environments/overlays/dev
+      workspaces:
+      - name: workspace
+        workspace: manifests
     - name: dev-gitops-sync
       taskRef:
         name: argocd-task-sync-and-wait
@@ -45,6 +53,9 @@ spec:
         - name: application_name
           value: rollouts-demo-dev
     - name: prod-git-update
+      taskRef:
+        kind: Task
+        name: git-update-deployment
       runAfter:
         - dev-gitops-sync
       params:
@@ -58,6 +69,9 @@ spec:
         value: $(tasks.get-image-digest.results.IMAGE_DIGEST)
       - name: KUSTOMIZATION_PATH
         value: demo/environments/overlays/prod
+      workspaces:
+      - name: workspace
+        workspace: manifests
     - name: prod-gitops-sync
       taskRef:
         name: argocd-task-sync-and-wait

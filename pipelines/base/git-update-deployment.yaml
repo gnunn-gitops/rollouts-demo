@@ -91,5 +91,5 @@ spec:
       echo -n "$RESULT_SHA" > $(results.commit.path)
     workingDir: $(workspaces.workspace.path)
   workspaces:
-  - description: The workspace consisting of maven project.
+  - description: The workspace used to store source code
     name: workspace

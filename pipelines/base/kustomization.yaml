@@ -1,4 +1,5 @@
 resources:
+- workspace-pvc.yaml
 - git-update-deployment.yaml
 - argocd-sync-and-wait-task.yaml
 - pipeline.yaml
