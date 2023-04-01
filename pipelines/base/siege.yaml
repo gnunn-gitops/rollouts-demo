@@ -11,7 +11,7 @@ spec:
   - name: REPETITIONS
     type: string
   - NAME: THRESHOLD
-    description: The percent number of failed transactions for the test to be a failure, for example 5.0 for 5%, 10 for 10%, etc.
+    description: The percent number of failed transactions
     type: string
   results:
   - description: Number of failed transactions
