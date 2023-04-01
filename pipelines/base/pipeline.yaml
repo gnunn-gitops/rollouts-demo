@@ -98,7 +98,7 @@ spec:
         operator: in
         values: ["0"]
       taskRef:
-        name: argo-rollouts.yaml
+        name: argo-rollouts
       runAfter:
         - smoke-test
       params:
@@ -114,7 +114,7 @@ spec:
         operator: notin
         values: ["0"]
       taskRef:
-        name: argo-rollouts.yaml
+        name: argo-rollouts
       runAfter:
         - smoke-test
       params:
