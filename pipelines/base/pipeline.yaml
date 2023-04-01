@@ -92,3 +92,35 @@ spec:
           value: "20"
         - name: REPITITIONS
           value: "10"
+    - name: promote
+      when:
+      - input: "$(tasks.smoke-test.results.FAILED_TRANSACTIONS)"
+        operator: in
+        values: ["0"]
+      taskRef:
+        name: argo-rollouts.yaml
+      runAfter:
+        - smoke-test
+      params:
+        - name: COMMAND
+          value: promote
+        - name: ROLLOUT
+          value: rollout-bluegreen
+        - name: NAMESPACE
+          value: rollouts-demo-prod
+    - name: abort
+      when:
+      - input: "$(tasks.smoke-test.results.FAILED_TRANSACTIONS)"
+        operator: notin
+        values: ["0"]
+      taskRef:
+        name: argo-rollouts.yaml
+      runAfter:
+        - smoke-test
+      params:
+        - name: COMMAND
+          value: promote
+        - name: ROLLOUT
+          value: rollout-bluegreen
+        - name: NAMESPACE
+          value: rollouts-demo-prod
