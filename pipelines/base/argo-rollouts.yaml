@@ -12,6 +12,6 @@ spec:
     type: string
   steps:
   - name: command
-    image: quay.io/gnunn/tools:4.10-1
+    image: quay.io/gnunn/tools:latest
     script: |
       oc argo rollouts $(params.COMMAND) $(params.ROLLOUT) -n $(params.NAMESPACE)
