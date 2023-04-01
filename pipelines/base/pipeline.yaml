@@ -87,7 +87,7 @@ spec:
         - prod-gitops-sync
       params:
         - name: URL
-          value: http://rollout-bluegreen-preview.rollouts-demo-prod:8080
+          value: http://rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com
         - name: CONCURRENT
           value: "20"
         - name: REPITITIONS

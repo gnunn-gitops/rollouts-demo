@@ -13,4 +13,5 @@ spec:
   - image: quay.io/gnunn/tools:latest
     name: run-test
     script: |
+      echo "Testing URL $(params.URL)"
       siege -r $(params.REPITITIONS) -c $(params.CONCURRENT) -v $(params.URL)
