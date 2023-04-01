@@ -10,8 +10,8 @@ spec:
     type: string
   - name: REPETITIONS
     type: string
-  - NAME: THRESHOLD
-    description: The percent number of failed transactions
+  - description: The percent number of failed transactions
+    name: THRESHOLD
     type: string
   results:
   - description: Number of failed transactions
