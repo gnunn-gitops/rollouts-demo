@@ -8,7 +8,7 @@ default:
       namespace: rollouts-demo-gitops
       server: https://kubernetes.default.svc
     source:
-      repoURL: https://github.com/gitops-examples/rollouts-demo
+      repoURL: https://github.com/gnunn-gitops/rollouts-demo
       targetRevision: main
 
 applications:
