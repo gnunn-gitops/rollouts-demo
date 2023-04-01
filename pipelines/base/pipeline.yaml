@@ -87,7 +87,7 @@ spec:
         - prod-gitops-sync
       params:
         - name: URL
-          value: rollout-bluegreen-preview.rollouts-demo-prod
+          value: http://rollout-bluegreen-preview.rollouts-demo-prod:8080
         - name: CONCURRENT
           value: "20"
         - name: REPITITIONS
