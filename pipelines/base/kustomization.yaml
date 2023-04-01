@@ -5,4 +5,4 @@ resources:
 - pipeline.yaml
 - task-image-tag-to-digest.yaml
 - siege.yaml
-- argo-rollouts-yaml
+- argo-rollouts.yaml
