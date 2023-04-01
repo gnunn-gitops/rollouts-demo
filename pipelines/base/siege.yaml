@@ -10,7 +10,7 @@ spec:
     type: string
   - name: REPITITIONS
   steps:
-  - image: siamaksade/siege
+  - image: quay.io/gnunn/tools:latest
     name: run-test
     script: |
       siege -r $(params.REPITITIONS) -c $(params.CONCURRENT) -v $(params.URL)
