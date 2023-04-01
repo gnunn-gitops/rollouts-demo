@@ -8,7 +8,8 @@ spec:
     type: string
   - name: CONCURRENT
     type: string
-  - name: REPITITIONS
+  - name: REPETITIONS
+    type: string
   results:
   - description: Number of failed transactions
     name: FAILED_TRANSACTIONS
@@ -20,8 +21,8 @@ spec:
   - image: quay.io/gnunn/tools:latest
     name: run-test
     script: |
-      echo "Testing URL $(params.URL)"
-      RESULTS=$(siege -r $(params.REPITITIONS) -c $(params.CONCURRENT) -v $(params.URL) -j)
+      echo "Testing URL with command 'siege -r $(params.REPETITIONS) -c $(params.CONCURRENT) -v $(params.URL) -j' "
+      RESULTS=$(siege -r $(params.REPETITIONS) -c $(params.CONCURRENT) -v $(params.URL) -j)
 
       echo $RESULTS | jq .failed_transactions > $(results.FAILED_TRANSACTIONS.path)
       echo $RESULTS | jq .successful_transactions > $(results.SUCCESSFUL_TRANSACTIONS.path)

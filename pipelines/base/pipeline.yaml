@@ -90,7 +90,7 @@ spec:
           value: http://rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com
         - name: CONCURRENT
           value: "20"
-        - name: REPITITIONS
+        - name: REPETITIONS
           value: "10"
     - name: promote
       when:
