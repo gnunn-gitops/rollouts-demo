@@ -40,7 +40,7 @@ spec:
       - name: NEW_DIGEST
         value: $(tasks.get-image-digest.results.image_digest)
       - name: KUSTOMIZATION_PATH
-        value: demo/environments/overlays/dev
+        value: environments/overlays/dev
       workspaces:
       - name: workspace
         workspace: manifests
@@ -68,7 +68,7 @@ spec:
       - name: NEW_DIGEST
         value: $(tasks.get-image-digest.results.image_digest)
       - name: KUSTOMIZATION_PATH
-        value: demo/environments/overlays/prod
+        value: environments/overlays/prod
       workspaces:
       - name: workspace
         workspace: manifests
