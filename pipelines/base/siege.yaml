@@ -34,13 +34,13 @@ spec:
       FAILED_PERCENT=$(jq -n $FAILED/$TOTAL*100)
 
       if (( $(echo "$FAILED_PERCENT > $(params.THRESHOLD)" |bc -l) )); then
-        echo "true" > $(results.FAILED.path)
+        echo "true" | tee $(results.FAILED.path)
       else
-        echo "false" > $(results.FAILED.path)
+        echo "false" | tee $(results.FAILED.path)
       fi
 
-      echo $RESULTS | jq .failed_transactions > $(results.FAILED_TRANSACTIONS.path)
-      echo $RESULTS | jq .successful_transactions > $(results.SUCCESSFUL_TRANSACTIONS.path)
-      echo $RESULTS | jq .transactions > $(results.TRANSACTIONS.path)
+      echo $RESULTS | jq .failed_transactions | tee $(results.FAILED_TRANSACTIONS.path)
+      echo $RESULTS | jq .successful_transactions | tee $(results.SUCCESSFUL_TRANSACTIONS.path)
+      echo $RESULTS | jq .transactions | tee $(results.TRANSACTIONS.path)
 
       echo $RESULTS
