@@ -92,11 +92,13 @@ spec:
           value: "20"
         - name: REPETITIONS
           value: "10"
+        - name: THRESHOLD
+          value: "5.0"
     - name: promote
       when:
-      - input: "$(tasks.smoke-test.results.FAILED_TRANSACTIONS)"
+      - input: "$(tasks.smoke-test.results.FAILED)"
         operator: in
-        values: ["0"]
+        values: ["false"]
       taskRef:
         name: argo-rollouts
       runAfter:
@@ -110,9 +112,9 @@ spec:
           value: rollouts-demo-prod
     - name: abort
       when:
-      - input: "$(tasks.smoke-test.results.FAILED_TRANSACTIONS)"
-        operator: notin
-        values: ["0"]
+      - input: "$(tasks.smoke-test.results.FAILED)"
+        operator: in
+        values: ["true"]
       taskRef:
         name: argo-rollouts
       runAfter:
