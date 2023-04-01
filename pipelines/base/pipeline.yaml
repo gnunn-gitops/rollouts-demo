@@ -119,7 +119,7 @@ spec:
         - smoke-test
       params:
         - name: COMMAND
-          value: promote
+          value: abort
         - name: ROLLOUT
           value: rollout-bluegreen
         - name: NAMESPACE
