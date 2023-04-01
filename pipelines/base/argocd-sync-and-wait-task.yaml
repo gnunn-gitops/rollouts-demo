@@ -40,10 +40,10 @@ spec:
         fi
 
         # Sync application
-        if [[ $(argocd app get $(params.application_name) -o json | jq '.spec.syncPolicy.automated') != "null" ]] ; then
-          argocd app get $(params.application_name) --refresh
+        if [[ $(argocd app get $(params.application_name $(params.flags)) -o json | jq '.spec.syncPolicy.automated') != "null" ]] ; then
+          argocd app get $(params.application_name) --refresh "$(params.flags)"
         else
-          argocd app sync $(params.application_name)
+          argocd app sync $(params.application_name) "$(params.flags)"
         fi
 
         # Application may already be syncing due to webhook

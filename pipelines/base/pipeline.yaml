@@ -51,7 +51,7 @@ spec:
         - dev-git-update
       params:
         - name: application_name
-          value: rollouts-demo-dev
+          value: rollouts-demo-gitops/rollouts-demo-dev
     - name: prod-git-update
       taskRef:
         kind: Task
@@ -79,4 +79,4 @@ spec:
         - prod-git-update
       params:
         - name: application_name
-          value: rollouts-demo-prod
+          value: rollouts-demo-gitops/rollouts-demo-prod
