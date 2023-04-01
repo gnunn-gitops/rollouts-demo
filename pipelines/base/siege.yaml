@@ -28,10 +28,10 @@ spec:
       echo "Testing URL with command 'siege -r $(params.REPETITIONS) -c $(params.CONCURRENT) -v $(params.URL) -j' "
       RESULTS=$(siege -r $(params.REPETITIONS) -c $(params.CONCURRENT) -v $(params.URL) -j)
 
-      $FAILED=$(echo $RESULTS | jq .failed_transactions)
-      $TOTAL=$(echo $RESULTS | jq .transactions)
+      FAILED=$(jq '.failed_transactions' <<< "${RESULTS}")
+      TOTAL=$(jq '.transactions' <<< "${RESULTS}")
 
-      $FAILED_PERCENT=$(jq -n $FAILED/$TOTAL*100)
+      FAILED_PERCENT=$(jq -n $FAILED/$TOTAL*100)
 
       if (( $(echo "$FAILED_PERCENT > $(params.THRESHOLD)" |bc -l) )); then
         echo "true" > $(results.FAILED.path)
