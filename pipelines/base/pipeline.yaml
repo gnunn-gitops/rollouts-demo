@@ -80,3 +80,15 @@ spec:
       params:
         - name: application_name
           value: rollouts-demo-gitops/rollouts-demo-prod
+    - name: smoke-test
+      taskRef:
+        name: siege
+      runAfter:
+        - prod-gitops-sync
+      params:
+        - name: URL
+          value: rollouts-demo-prod.rollout-bluegreen-preview
+        - name: CONCURRENT
+          value: "20"
+        - name: REPITITIONS
+          value: "10"

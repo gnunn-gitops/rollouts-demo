@@ -4,3 +4,4 @@ resources:
 - argocd-sync-and-wait-task.yaml
 - pipeline.yaml
 - task-image-tag-to-digest.yaml
+- siege.yaml

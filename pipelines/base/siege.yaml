@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: siege
+spec:
+  params:
+  - name: URL
+    type: string
+  - name: CONCURRENT
+    type: string
+  - name: REPITITIONS
+  steps:
+  - image: siamaksade/siege
+    name: run-test
+    script: |
+      siege -r $(params.REPITITIONS) -c $(params.CONCURRENT) -v $(params.URL)
