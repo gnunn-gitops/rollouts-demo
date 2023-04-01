@@ -21,10 +21,6 @@ spec:
   - image: quay.io/gnunn/tools:latest
     name: run-test
     script: |
-      pwd
-
-      echo "Home: ${HOME}"
-
       echo "Testing URL with command 'siege -r $(params.REPETITIONS) -c $(params.CONCURRENT) -v $(params.URL) -j' "
       RESULTS=$(siege -r $(params.REPETITIONS) -c $(params.CONCURRENT) -v $(params.URL) -j)
 
