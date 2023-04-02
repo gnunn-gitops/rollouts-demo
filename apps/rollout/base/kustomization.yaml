@@ -5,4 +5,3 @@ resources:
 - route-preview.yaml
 - analysis.yaml
 - monitor-token.yaml
-- monitoring-role-binding.yaml

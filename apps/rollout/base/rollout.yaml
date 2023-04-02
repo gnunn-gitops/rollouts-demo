@@ -32,14 +32,16 @@ spec:
       # immediately before the promotion. If omitted, the default behavior is to promote the new
       # stack as soon as the ReplicaSet are completely ready/available.
       # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
-      autoPromotionEnabled: false
-      # prePromotionAnalysis:
-      #   templates:
-      #   - templateName: smoke-tests
-      #   args:
-      #   - name: route-name
-      #     value: rollout-bluegreen-preview
-      #   - name: namespace
-      #     value: rollouts-demo-prod
-      #   - name: route-url
-      #     value: rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com
+      autoPromotionEnabled: true
+      prePromotionAnalysis:
+        templates:
+        - templateName: smoke-tests
+        args:
+        - name: query
+        - value: sum%28irate%28haproxy_backend_http_responses_total%7Bexported_namespace%3D%27rollouts-demo%27%2C%20route%3D~%22rollout-bluegreen-preview%22%2C%20code%21~%225.%2A%22%7D%5B5m%5D%29%29%20%2F%20sum%28irate%28haproxy_backend_http_responses_total%7Bexported_namespace%3D%27rollouts-demo%27%2C%20route%3D~%22rollout-bluegreen-preview%22%7D%5B5m%5D%29%29%20%3E%200%20or%20on%28%29%20vector%280%29
+        # - name: route-name
+        #   value: rollout-bluegreen-preview
+        # - name: namespace
+        #   value: rollouts-demo-prod
+        # - name: route-url
+        #   value: rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com

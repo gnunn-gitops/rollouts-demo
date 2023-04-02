@@ -4,9 +4,7 @@ metadata:
   name: smoke-tests
 spec:
   args:
-  - name: route-name
-  - name: namespace
-  - name: route-url
+  - query
   metrics:
   - name: success-rate
     interval: 60s
@@ -16,11 +14,17 @@ spec:
     successCondition: result[0] >= 0.95
     failureLimit: 1
     provider:
-      prometheus:
-        #address: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
-        address: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com
-        query: |
-          sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}", code!~"5.*"}[5m])) / sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}"}[5m])) > 0 or on() vector(0)
+      web:
+        - url: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091/api/v1/query?query={{ args.query }}
+          headers:
+            - key: Authorization
+              value: "Bearer {{args.api-token}}"
+          jsonPath: "{$.data.result[0].value[1]}"
+      # prometheus:
+      #   #address: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
+      #   address: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com
+      #   query: |
+      #     sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}", code!~"5.*"}[5m])) / sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}"}[5m])) > 0 or on() vector(0)
   - name: run-load
     provider:
       job:
