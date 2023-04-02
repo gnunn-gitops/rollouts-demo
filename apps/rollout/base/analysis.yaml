@@ -17,7 +17,7 @@ spec:
     count: 2
     # NOTE: prometheus queries return results in the form of a vector.
     # So it is common to access the index 0 of the returned array to obtain the value
-    successCondition: result[0] >= 0.95
+    successCondition: value[1] >= 5
     failureLimit: 1
     provider:
       web:
@@ -25,7 +25,7 @@ spec:
           headers:
             - key: Authorization
               value: "Bearer {{args.api-token}}"
-          jsonPath: "{$.data.result[0].value[1]}"
+          jsonPath: "{$.data.result[0]}"
       # prometheus:
       #   #address: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
       #   address: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com
