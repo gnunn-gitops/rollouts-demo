@@ -4,7 +4,12 @@ metadata:
   name: smoke-tests
 spec:
   args:
-  - query
+  - name: query
+  - name: api-token
+    valueFrom:
+      secretKeyRef:
+        name: monitor-auth-secret
+        key: token
   metrics:
   - name: success-rate
     interval: 60s
