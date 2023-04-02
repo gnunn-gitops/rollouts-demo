@@ -5,6 +5,7 @@ metadata:
 spec:
   args:
   - name: query
+  - name: route-url
   - name: api-token
     valueFrom:
       secretKeyRef:
