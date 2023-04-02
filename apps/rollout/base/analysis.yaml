@@ -17,7 +17,7 @@ spec:
     count: 2
     # NOTE: prometheus queries return results in the form of a vector.
     # So it is common to access the index 0 of the returned array to obtain the value
-    successCondition: value[1] >= 5
+    successCondition: value[1] <= 5
     failureLimit: 1
     provider:
       web:

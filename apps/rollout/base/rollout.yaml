@@ -32,7 +32,7 @@ spec:
       # immediately before the promotion. If omitted, the default behavior is to promote the new
       # stack as soon as the ReplicaSet are completely ready/available.
       # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
-      autoPromotionEnabled: true
+      autoPromotionEnabled: false
       prePromotionAnalysis:
         templates:
         - templateName: smoke-tests
