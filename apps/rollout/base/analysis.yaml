@@ -3,6 +3,10 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   name: smoke-tests
 spec:
+  args:
+  - name: route-name
+  - name: namespace
+  - name: route-url
   metrics:
   - name: success-rate
     interval: 5m
