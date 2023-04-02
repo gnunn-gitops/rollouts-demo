@@ -25,5 +25,6 @@ spec:
               containers:
               - name: siege
                 image: quay.io/gnunn/tools:latest
-                command: siege -c 20 -r 10 -v http://{{args.route-url}}
+                command: [sh, -c]
+                args: ["siege -c 20 -r 10 -v http://{{args.route-url}}"]
               restartPolicy: Never
