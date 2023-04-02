@@ -3,3 +3,4 @@ resources:
 - services.yaml
 - route-active.yaml
 - route-preview.yaml
+- analysis.yaml

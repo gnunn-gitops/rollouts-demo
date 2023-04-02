@@ -80,49 +80,49 @@ spec:
       params:
         - name: application_name
           value: rollouts-demo-gitops/rollouts-demo-prod
-    - name: smoke-test
-      taskRef:
-        name: siege
-      runAfter:
-        - prod-gitops-sync
-      params:
-        - name: URL
-          value: http://rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com
-        - name: CONCURRENT
-          value: "20"
-        - name: REPETITIONS
-          value: "10"
-        - name: THRESHOLD
-          value: "5.0"
-    - name: promote
-      when:
-      - input: "$(tasks.smoke-test.results.FAILED)"
-        operator: in
-        values: ["false"]
-      taskRef:
-        name: argo-rollouts
-      runAfter:
-        - smoke-test
-      params:
-        - name: COMMAND
-          value: promote
-        - name: ROLLOUT
-          value: rollout-bluegreen
-        - name: NAMESPACE
-          value: rollouts-demo-prod
-    - name: abort
-      when:
-      - input: "$(tasks.smoke-test.results.FAILED)"
-        operator: in
-        values: ["true"]
-      taskRef:
-        name: argo-rollouts
-      runAfter:
-        - smoke-test
-      params:
-        - name: COMMAND
-          value: abort
-        - name: ROLLOUT
-          value: rollout-bluegreen
-        - name: NAMESPACE
-          value: rollouts-demo-prod
+    # - name: smoke-test
+    #   taskRef:
+    #     name: siege
+    #   runAfter:
+    #     - prod-gitops-sync
+    #   params:
+    #     - name: URL
+    #       value: http://rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com
+    #     - name: CONCURRENT
+    #       value: "20"
+    #     - name: REPETITIONS
+    #       value: "10"
+    #     - name: THRESHOLD
+    #       value: "5.0"
+    # - name: promote
+    #   when:
+    #   - input: "$(tasks.smoke-test.results.FAILED)"
+    #     operator: in
+    #     values: ["false"]
+    #   taskRef:
+    #     name: argo-rollouts
+    #   runAfter:
+    #     - smoke-test
+    #   params:
+    #     - name: COMMAND
+    #       value: promote
+    #     - name: ROLLOUT
+    #       value: rollout-bluegreen
+    #     - name: NAMESPACE
+    #       value: rollouts-demo-prod
+    # - name: abort
+    #   when:
+    #   - input: "$(tasks.smoke-test.results.FAILED)"
+    #     operator: in
+    #     values: ["true"]
+    #   taskRef:
+    #     name: argo-rollouts
+    #   runAfter:
+    #     - smoke-test
+    #   params:
+    #     - name: COMMAND
+    #       value: abort
+    #     - name: ROLLOUT
+    #       value: rollout-bluegreen
+    #     - name: NAMESPACE
+    #       value: rollouts-demo-prod

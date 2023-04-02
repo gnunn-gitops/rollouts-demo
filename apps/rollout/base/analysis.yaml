@@ -1,7 +1,7 @@
 kind: AnalysisTemplate
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: test-success
+  name: smoke-tests
 spec:
   metrics:
   - name: success-rate
@@ -14,7 +14,7 @@ spec:
       prometheus:
         address: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
         query: |
-          sum(irate(haproxy_backend_http_responses_total{exported_namespace='rollouts-demo-prod', route=~"rollout-bluegreen-preview", code!~"5.*"}[5m])) / sum(irate(haproxy_backend_http_responses_total{exported_namespace='rollouts-demo-prod', route=~"rollout-bluegreen-preview"}[5m]))
+          sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}", code!~"5.*"}[5m])) / sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}"}[5m]))
   - name: run-load
     provider:
       job:
@@ -25,5 +25,5 @@ spec:
               containers:
               - name: siege
                 image: quay.io/gnunn/tools:latest
-                command: siege -c 20 -r 10 -v http://rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com
+                command: siege -c 20 -r 10 -v http://{{args.route-url}}
               restartPolicy: Never
