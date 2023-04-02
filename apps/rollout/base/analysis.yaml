@@ -13,20 +13,19 @@ spec:
         key: token
   metrics:
   - name: success-rate
-    interval: 60s
-    count: 2
+    interval: 30s
+    count: 4
     # NOTE: prometheus queries return results in the form of a vector.
     # So it is common to access the index 0 of the returned array to obtain the value
-    successCondition: result == 'success'
-    failureLimit: 1
+    successCondition: result[0].value[1] == '0'
+    failureLimit: 0
     provider:
       web:
           url: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com/api/v1/query?query={{ args.query }}
           headers:
             - key: Authorization
               value: "Bearer {{args.api-token}}"
-          #jsonPath: "{$.data.result[0]}"
-          jsonPath: "{$.status}"
+          jsonPath: "{$.data.result}"
       # prometheus:
       #   #address: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
       #   address: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com
@@ -43,5 +42,5 @@ spec:
               - name: siege
                 image: quay.io/gnunn/tools:latest
                 command: [sh, -c]
-                args: ["siege -c 20 -r 30 -v http://{{args.route-url}}"]
+                args: ["siege -c 20 -r 30 -d10 -v http://{{args.route-url}}"]
               restartPolicy: Never
