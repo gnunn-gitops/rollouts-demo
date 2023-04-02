@@ -31,16 +31,16 @@ spec:
       #   address: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com
       #   query: |
       #     sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}", code!~"5.*"}[5m])) / sum(irate(haproxy_backend_http_responses_total{exported_namespace='{{args.namespace}}', route=~"{{args.route-name}}"}[5m])) > 0 or on() vector(0)
-  - name: run-load
-    provider:
-      job:
-        spec:
-          backoffLimit: 1
-          template:
-            spec:
-              containers:
-              - name: siege
-                image: quay.io/gnunn/tools:latest
-                command: [sh, -c]
-                args: ["siege -c 20 -r 20 -d10 -v http://{{args.route-url}}"]
-              restartPolicy: Never
+  # - name: run-load
+  #   provider:
+  #     job:
+  #       spec:
+  #         backoffLimit: 1
+  #         template:
+  #           spec:
+  #             containers:
+  #             - name: siege
+  #               image: quay.io/gnunn/tools:latest
+  #               command: [sh, -c]
+  #               args: ["siege -c 20 -r 20 -d10 -v http://{{args.route-url}}"]
+  #             restartPolicy: Never
