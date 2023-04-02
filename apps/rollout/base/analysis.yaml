@@ -21,7 +21,7 @@ spec:
     failureLimit: 1
     provider:
       web:
-          url: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091/api/v1/query?query={{ args.query }}
+          url: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com/api/v1/query?query={{ args.query }}
           headers:
             - key: Authorization
               value: "Bearer {{args.api-token}}"
