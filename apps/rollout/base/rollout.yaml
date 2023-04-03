@@ -3,8 +3,8 @@ kind: Rollout
 metadata:
   name: rollout-bluegreen
 spec:
-  replicas: 4
-  revisionHistoryLimit: 4
+  replicas: 2
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: rollout-bluegreen
@@ -21,17 +21,8 @@ spec:
         - containerPort: 8080
   strategy:
     blueGreen:
-      # activeService specifies the service to update with the new template hash at time of promotion.
-      # This field is mandatory for the blueGreen update strategy.
       activeService: rollout-bluegreen-active
-      # previewService specifies the service to update with the new template hash before promotion.
-      # This allows the preview stack to be reachable without serving production traffic.
-      # This field is optional.
       previewService: rollout-bluegreen-preview
-      # autoPromotionEnabled disables automated promotion of the new stack by pausing the rollout
-      # immediately before the promotion. If omitted, the default behavior is to promote the new
-      # stack as soon as the ReplicaSet are completely ready/available.
-      # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
       autoPromotionEnabled: true
       prePromotionAnalysis:
         templates:
@@ -42,7 +33,7 @@ spec:
           value: irate%28haproxy_backend_http_responses_total%7Bexported_namespace%3D%27rollouts-demo-prod%27%2C%20route%3D~%22rollout-bluegreen-preview%22%2C%20code%3D%225xx%22%7D%5B1m%5D%29%20%3E%205%20or%20on%28%29%20vector%280%29
         - name: route-url
           value: rollout-bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com
-        # - name: route-name
-        #   value: rollout-bluegreen-preview
-        # - name: namespace
-        #   value: rollouts-demo-prod
+    #     - name: route-name
+    #       value: rollout-bluegreen-preview
+    #     - name: namespace
+    #       value: rollouts-demo-prod
