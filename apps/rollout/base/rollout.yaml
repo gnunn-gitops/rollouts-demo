@@ -3,8 +3,8 @@ kind: Rollout
 metadata:
   name: rollout-bluegreen
 spec:
-  replicas: 2
-  revisionHistoryLimit: 2
+  replicas: 4
+  revisionHistoryLimit: 4
   selector:
     matchLabels:
       app: rollout-bluegreen
