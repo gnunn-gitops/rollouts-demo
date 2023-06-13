@@ -2,6 +2,8 @@ kind: AnalysisTemplate
 apiVersion: argoproj.io/v1alpha1
 metadata:
   name: smoke-tests
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   args:
   - name: query

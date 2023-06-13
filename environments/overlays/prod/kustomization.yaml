@@ -1,6 +1,7 @@
 namespace: rollouts-demo-prod
 
 resources:
+- rollout-manager.yaml
 - ../../../apps/rollout/base
 - networkpolicy-cicd.yaml
 - rollouts-edit-cicd-rolebinding.yaml
