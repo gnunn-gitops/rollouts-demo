@@ -9,5 +9,5 @@ resources:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- digest: sha256:e32df3d15f759d36c323b3dccb7003d38df1a4274d37217715151f085c24c58f
+- digest: sha256:3225193a6415b14b3fcdd160c40248b2bfd62f8c77326480559b91a41ced6e20
   name: argoproj/rollouts-demo
