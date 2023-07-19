@@ -25,7 +25,7 @@ spec:
     blueGreen:
       activeService: rollout-bluegreen-active
       previewService: rollout-bluegreen-preview
-      autoPromotionEnabled: false
+      autoPromotionEnabled: true
       prePromotionAnalysis:
         templates:
         - templateName: smoke-tests
