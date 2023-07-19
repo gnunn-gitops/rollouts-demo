@@ -61,7 +61,6 @@ spec:
     workingDir: $(workspaces.workspace.path)
   - image: docker.io/alpine/git:v2.26.2
     name: git-commit
-    resources: {}
     script: |
       cd git-update-digest-workdir
 
