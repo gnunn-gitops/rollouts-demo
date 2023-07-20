@@ -1,7 +1,2 @@
 resources:
-- rollout.yaml
-- services.yaml
-- route-active.yaml
-- route-preview.yaml
-- analysis.yaml
 - monitor-token.yaml

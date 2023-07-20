@@ -2,7 +2,7 @@ namespace: rollouts-demo-prod
 
 resources:
 - rollout-manager.yaml
-- ../../../apps/rollout/base
+- ../../../apps/rollout/overlays/bluegreen
 - networkpolicy-cicd.yaml
 - rollouts-edit-cicd-rolebinding.yaml
 

@@ -1,0 +1,5 @@
+resources:
+- ../../base
+- rollout.yaml
+- services.yaml
+- route.yaml
