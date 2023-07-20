@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: rollout
+  name: canary
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
@@ -9,11 +9,11 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: rollout
+      app: canary
   template:
     metadata:
       labels:
-        app: rollout
+        app: canary
     spec:
       containers:
       - name: rollouts-demo
