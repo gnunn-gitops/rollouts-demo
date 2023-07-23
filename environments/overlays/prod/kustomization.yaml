@@ -1,4 +1,4 @@
-namespace: rollouts-demo-prod
+namespace: rollouts
 
 resources:
 - monitor-token.yaml
@@ -7,9 +7,3 @@ resources:
 - ../../../apps/rollout/overlays/canary
 - networkpolicy-cicd.yaml
 - rollouts-edit-cicd-rolebinding.yaml
-
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-images:
-- digest: sha256:3225193a6415b14b3fcdd160c40248b2bfd62f8c77326480559b91a41ced6e20
-  name: argoproj/rollouts-demo

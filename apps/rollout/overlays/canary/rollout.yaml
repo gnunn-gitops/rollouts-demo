@@ -23,8 +23,8 @@ spec:
         - containerPort: 8080
   strategy:
     canary:
-      canaryService: canary
-      stableService: stable
+      canaryService: canary-canary
+      stableService: canary-stable
       steps:
       - setWeight: 20
       - pause: {}
