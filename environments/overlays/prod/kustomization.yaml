@@ -1,4 +1,4 @@
-namespace: rollouts
+namespace: rollouts-demo-prod
 
 resources:
 - monitor-token.yaml
