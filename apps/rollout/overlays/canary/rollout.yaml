@@ -25,7 +25,7 @@ spec:
     canary:
       analysis:
         templates:
-        - templateName: smoke-tests
+        - templateName: canary-analysis
         args:
         - name: query
           # irate(haproxy_backend_http_responses_total{exported_namespace='rollouts-demo-prod', route=~"rollout-bluegreen-preview", code="5xx"}[1m]) > 5 or on() vector(0)
