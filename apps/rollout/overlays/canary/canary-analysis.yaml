@@ -23,7 +23,6 @@ spec:
     failureLimit: 0
     provider:
       web:
-          #url: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com/api/v1/query?query={{ args.query }}
           url: https://thanos-querier.openshift-monitoring:9091/api/v1/query?query={{ args.query }}
           insecure: true
           headers:

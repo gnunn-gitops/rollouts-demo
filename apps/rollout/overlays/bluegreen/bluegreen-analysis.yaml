@@ -46,5 +46,5 @@ spec:
               - name: siege
                 image: quay.io/gnunn/tools:latest
                 command: [sh, -c]
-                args: ["siege -c 20 -r 20 -d10 -v http://{{args.route-url}}"]
+                args: ["siege -c 20 -r 15 -d10 -v http://{{args.route-url}}"]
               restartPolicy: Never
