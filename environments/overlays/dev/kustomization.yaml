@@ -7,5 +7,5 @@ resources:
 - ../../../apps/deploy/base
 
 images:
-- digest: sha256:e32df3d15f759d36c323b3dccb7003d38df1a4274d37217715151f085c24c58f
+- digest: sha256:12a1c7e694f9dcbf5c44f1f642905dea45128227f450e695d900c241ff853c09
   name: argoproj/rollouts-demo
