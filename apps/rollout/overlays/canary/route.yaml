@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: canary
+  name: canary-stable
 spec:
   port:
     targetPort: http
@@ -12,7 +12,21 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
+  name: canary-canary
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: canary-canary
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
   name: canary-all
+  annotations:
+    haproxy.router.openshift.io/disable_cookies='true'
+    haproxy.router.openshift.io/balance='roundrobin'
 spec:
   port:
     targetPort: http
