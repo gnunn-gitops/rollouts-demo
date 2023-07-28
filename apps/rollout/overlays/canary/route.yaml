@@ -25,8 +25,8 @@ kind: Route
 metadata:
   name: canary-all
   annotations:
-    haproxy.router.openshift.io/disable_cookies='true'
-    haproxy.router.openshift.io/balance='roundrobin'
+    haproxy.router.openshift.io/disable_cookies: 'true'
+    haproxy.router.openshift.io/balance: roundrobin
 spec:
   port:
     targetPort: http
