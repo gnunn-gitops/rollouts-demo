@@ -8,3 +8,14 @@ spec:
   to:
     kind: Service
     name: canary-stable
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: canary-all
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: canary-all
