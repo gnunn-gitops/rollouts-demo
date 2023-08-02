@@ -11,5 +11,5 @@ resources:
 - networkpolicy-cicd.yaml
 - rollouts-edit-cicd-rolebinding.yaml
 images:
-- tag: green
+- newTag: green
   name: argoproj/rollouts-demo
