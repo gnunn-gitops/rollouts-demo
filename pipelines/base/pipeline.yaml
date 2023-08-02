@@ -28,8 +28,8 @@ spec:
       taskRef:
         kind: Task
         name: git-update-deployment
-      runAfter:
-        - get-image-digest
+      # runAfter:
+      #   - get-image-digest
       params:
       - name: GIT_REPOSITORY
         value: $(params.GIT_REPOSITORY)
