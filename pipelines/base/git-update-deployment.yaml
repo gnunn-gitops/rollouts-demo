@@ -21,8 +21,10 @@ spec:
     type: string
   - name: NEW_DIGEST
     type: string
+    default: ""
   - name: NEW_TAG
     type: string
+    default: ""
   - name: KUSTOMIZATION_PATH
     type: string
   - name: CREATE_BRANCH_NAME
