@@ -67,8 +67,10 @@ spec:
         value: $(params.GIT_REF)
       - name: NEW_IMAGE
         value: argoproj/rollouts-demo
-      - name: NEW_DIGEST
-        value: $(tasks.get-image-digest.results.image_digest)
+      # - name: NEW_DIGEST
+      #   value: $(tasks.get-image-digest.results.image_digest)
+      - name: NEW_TAG
+        value: $(params.COLOR)
       - name: KUSTOMIZATION_PATH
         value: environments/overlays/prod
       workspaces:
