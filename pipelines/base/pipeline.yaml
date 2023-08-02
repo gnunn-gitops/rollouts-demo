@@ -16,14 +16,14 @@ spec:
       name: GIT_REF
       type: string
   tasks:
-    - name: get-image-digest
-      taskRef:
-        name: image-tag-to-digest
-      params:
-        - name: image_dest_url
-          value: argoproj/rollouts-demo
-        - name: image_dest_tag
-          value: $(params.COLOR)
+    # - name: get-image-digest
+    #   taskRef:
+    #     name: image-tag-to-digest
+    #   params:
+    #     - name: image_dest_url
+    #       value: argoproj/rollouts-demo
+    #     - name: image_dest_tag
+    #       value: $(params.COLOR)
     - name: dev-git-update
       taskRef:
         kind: Task
@@ -37,8 +37,10 @@ spec:
         value: $(params.GIT_REF)
       - name: NEW_IMAGE
         value: argoproj/rollouts-demo
-      - name: NEW_DIGEST
-        value: $(tasks.get-image-digest.results.image_digest)
+      # - name: NEW_DIGEST
+      #   value: $(tasks.get-image-digest.results.image_digest)
+      - name: NEW_TAG
+        value: $(params.COLOR)
       - name: KUSTOMIZATION_PATH
         value: environments/overlays/dev
       workspaces:
