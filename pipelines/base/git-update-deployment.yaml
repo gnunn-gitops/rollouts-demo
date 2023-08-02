@@ -59,7 +59,7 @@ spec:
       # check if digest is set and if not set tag
       if [[ -z "$(params.NEW_DIGEST)" ]]
       then
-        kustomize edit set image $(params.NEW_IMAGE)@$(params.NEW_TAG)
+        kustomize edit set image $(params.NEW_IMAGE):$(params.NEW_TAG)
       else
         kustomize edit set image $(params.NEW_IMAGE)@$(params.NEW_DIGEST)
       fi
