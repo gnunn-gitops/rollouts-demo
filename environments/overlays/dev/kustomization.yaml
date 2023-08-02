@@ -5,3 +5,6 @@ namespace: rollouts-demo-dev
 
 resources:
 - ../../../apps/deploy/base
+images:
+- digest: green
+  name: argoproj/rollouts-demo
