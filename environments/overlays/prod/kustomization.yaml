@@ -10,3 +10,6 @@ resources:
 - ../../../apps/rollout/overlays/canary
 - networkpolicy-cicd.yaml
 - rollouts-edit-cicd-rolebinding.yaml
+images:
+- digest: green
+  name: argoproj/rollouts-demo
