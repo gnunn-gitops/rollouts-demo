@@ -5,6 +5,9 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
+  analysis:
+    successfulRunHistoryLimit: 20
+    unsuccessfulRunHistoryLimit: 10
   replicas: 8
   revisionHistoryLimit: 10
   selector:
