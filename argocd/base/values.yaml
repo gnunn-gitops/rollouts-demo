@@ -8,7 +8,7 @@ default:
       gitops.openshift.io/controllerNamespace: gitops
     destination:
       namespace: rollouts-demo-gitops
-      server: https://kubernetes.default.svc
+      name: in-cluster
     source:
       repoURL: https://github.com/gnunn-gitops/rollouts-demo
       targetRevision: main
