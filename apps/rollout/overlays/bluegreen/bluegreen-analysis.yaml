@@ -21,7 +21,7 @@ spec:
     failureLimit: 0
     provider:
       prometheus:
-        address: https://thanos-querier.openshift-monitoring:9091
+        address: https://thanos-querier-openshift-monitoring.apps.home.ocplab.com
         timeout: 40
         headers:
           - key: Authorization
