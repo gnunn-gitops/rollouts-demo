@@ -13,4 +13,4 @@ resources:
 - rollouts-edit-cicd-rolebinding.yaml
 images:
 - name: argoproj/rollouts-demo
-  newTag: green
+  newTag: red
