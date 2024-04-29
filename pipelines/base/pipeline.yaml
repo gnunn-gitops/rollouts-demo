@@ -47,8 +47,14 @@ spec:
       - name: workspace
         workspace: manifests
     - name: dev-gitops-sync
+      # taskRef:
+      #   name: argocd-task-sync-and-wait
       taskRef:
-        name: argocd-task-sync-and-wait
+        kind: Task
+        params:
+          - name: pathInRepo
+            value: task/argocd-sync-and-wait/1.0/argocd-sync-and-wait.yaml
+        resolver: git
       runAfter:
         - dev-git-update
       params:
@@ -77,8 +83,14 @@ spec:
       - name: workspace
         workspace: manifests
     - name: prod-gitops-sync
+      # taskRef:
+      #   name: argocd-task-sync-and-wait
       taskRef:
-        name: argocd-task-sync-and-wait
+        kind: Task
+        params:
+          - name: pathInRepo
+            value: task/argocd-sync-and-wait/1.0/argocd-sync-and-wait.yaml
+        resolver: git
       runAfter:
         - prod-git-update
       params:
