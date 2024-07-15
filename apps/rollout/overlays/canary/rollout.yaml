@@ -36,6 +36,11 @@ spec:
           value: canary-rollouts-demo-prod.apps.home.ocplab.com
       canaryService: canary-canary
       stableService: canary-stable
+      trafficRouting:
+        plugins:
+          argoproj-labs/openshift:
+            routes:
+              - canary
       steps:
       - setWeight: 20
       - pause: {}

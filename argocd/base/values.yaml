@@ -30,6 +30,16 @@ applications:
       namespace: rollouts-demo-prod
     source:
       path: environments/overlays/prod
+    syncOptions:
+      - RespectIgnoreDifferences=true
+    extraFields: |
+      ignoreDifferences:
+        - group: route.openshift.io
+          kind: Route
+          jsonPointers:
+            - /status
+            - /spec/to/weight
+            - /spec/alternateBackends
 
   rollouts-demo-cicd:
     labels:
