@@ -4,9 +4,7 @@ kind: Kustomization
 namespace: rollouts-demo-prod
 
 resources:
-- service-monitor.yaml
 - monitor-token.yaml
-- rollout-manager.yaml
 - ../../../apps/rollout/overlays/bluegreen
 - ../../../apps/rollout/overlays/canary
 - networkpolicy-cicd.yaml
