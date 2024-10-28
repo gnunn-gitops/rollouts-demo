@@ -33,7 +33,9 @@ spec:
         templates:
         - templateName: smoke-tests
         args:
-        - name: query
-          value: irate(haproxy_backend_http_responses_total{exported_namespace='rollouts-demo-prod', route=~"rollout-bluegreen-preview", code="5xx"}[1m]) > 5 or on() vector(0)
+        - name: namespace
+          value: rollouts-demo-prod
+        - name: route-name
+          value: bluegreen-preview
         - name: route-url
           value: bluegreen-preview-rollouts-demo-prod.apps.home.ocplab.com

@@ -6,7 +6,8 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   args:
-  - name: query
+  - name: namespace
+  - name: route-name
   - name: route-url
   - name: api-token
     valueFrom:
@@ -28,7 +29,7 @@ spec:
           - key: Authorization
             value: "Bearer {{args.api-token}}"
         query: |
-          {{ args.query }}
+          irate(haproxy_backend_http_responses_total{exported_namespace='{{ args.namespace }}', route=~"{{ args.route-name }}", code="5xx"}[1m]) > 5 or on() vector(0)
   - name: run-load
     provider:
       job:
