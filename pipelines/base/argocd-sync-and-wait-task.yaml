@@ -28,6 +28,9 @@ spec:
     envFrom:
       - secretRef:
           name: argocd-env-secret  # used for authentication (username/password or auth token) and server address
+    env:
+      - name: "HOME"
+        value: "/tekton/home"
   steps:
     - name: wait-and-sync
       image: quay.io/gnunn/tools:latest
