@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rollouts-demo
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/gnunn-gitops/rollouts-demo
+      revision: HEAD
+      directories:
+      - path: environments/overlays/*
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+    spec:
+      project: "rollouts-demo"
+      source:
+        repoURL: https://github.com/gnunn-gitops/rollouts-demo
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        name: workload-prod-local
+        namespace: 'rollouts-demo-{{.path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - RespectIgnoreDifferences=true
+      ignoreDifferences:
+        - group: route.openshift.io
+          kind: Route
+          jsonPointers:
+            - /status
+            - /spec/to/weight
+            - /spec/alternateBackends
