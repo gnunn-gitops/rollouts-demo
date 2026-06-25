@@ -14,7 +14,9 @@ spec:
       - path: environments/overlays/*
   template:
     metadata:
-      name: '{{.path.basename}}'
+      labels:
+        argocd-agent: "true"
+      name: "rollouts-demo-{{.path.basename}}"
     spec:
       project: "rollouts-demo"
       source:
